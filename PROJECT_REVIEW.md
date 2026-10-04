@@ -2,6 +2,34 @@
 
 Reviewed: 4 October 2026
 
+## Animated 3D redesign — latest update
+
+The previous static design has been replaced in response to Aaron's request for a highly animated portfolio:
+
+- New electric-blue visual system, oversized animated typography, transparent layered panels, and a floating portrait.
+- Real Three.js metallic torus knot with environment reflections, orbiting rings, satellite, particles, pointer parallax, and scroll-driven positioning. The scene loads in a separate chunk and responds to the selected theme.
+- Explicit light/dark toggle with local storage persistence and an early theme script to avoid a flash of the wrong theme. Both palettes include tested text/button contrast.
+- Animated headline, technology ribbon, staggered section/card reveals, pointer-driven card tilt/highlights, hover effects, and animated contact background.
+- Explicit animation pause/resume control; system reduced motion takes priority. Hidden tabs stop rendering, mobile rendering is capped, and WebGL failure falls back to CSS orbit graphics.
+- Aaron's supplied identity, portrait, 31 skills, education, employer, and GitHub are retained.
+
+Verification: content/contrast checks and React interaction tests pass for theme switching/persistence, pause/resume, reduced motion, menu Escape/focus, skill filters, unavailable storage, and listener cleanup. CSS module references were reviewed. No browser surface was available, so GPU appearance, device frame rate, and viewport screenshots remain unverified. Historical findings and earlier designs below are retained for context and are superseded by this update where applicable.
+
+Production build passed with no chunk-size warning: initial JavaScript 167.85 kB (54.39 kB gzip), separately loaded 3D renderer 482.36 kB (122.32 kB gzip), CSS 26.72 kB (6.28 kB gzip), portrait 99.93 kB.
+
+## Personal redesign — 4 October 2026
+
+This update supersedes the original WebGL portfolio and its sample project content. The page now presents Aaron's supplied biography, Lalitpur address, email, BCA studies from 2023 to present, current work at Top Tech Giants, and GitHub profile at `https://github.com/AaronShashankar`.
+
+- Rebuilt the complete UI with warm neutral surfaces, forest-green accents, consistent typography, and system-aware dark colors.
+- Added the supplied transparent portrait to a responsive hero frame. Vite bundles the PNG; image dimensions are specified and it receives high fetch priority.
+- Organized all 31 supplied skills into six categories with accessible filter buttons and an announced result count. .NET, Java, and C# remain explicitly labelled basic.
+- Replaced sample project claims with the actual work/education journey and links to the supplied employer and GitHub destinations.
+- Added active section navigation, mobile disclosure behavior, stable email text, clipboard feedback, local Nepal time, and back-to-top navigation.
+- Removed the former Three.js scene, custom cursor, marquees, magnetic effects, and their unused dependencies/source files. The page no longer requires WebGL.
+
+Verification: content/component checks and production compilation passed. The build emitted 161.15 kB JavaScript (52.11 kB gzip), 16.71 kB CSS (4.09 kB gzip), and the 99.93 kB portrait, with no chunk-size warning. Text/button colors pass the automated 4.5:1 contrast checks in both themes; every CSS module class reference was checked. No live browser was available, so viewport screenshots, filter/menu event interaction, clipboard behavior, and screen-reader testing remain unverified. Personal employment details come from Aaron's message; the employer website could not be fetched during this session.
+
 ## Fixes applied — 4 October 2026
 
 The findings below are retained as the original audit. The code has since been updated:

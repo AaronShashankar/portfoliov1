@@ -1,120 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import { HERO_CONTENT } from '../../data/content'
-import MagneticButton from '../UI/MagneticButton'
+import React from 'react'
+import { PERSONA, EMPLOYER } from '../../data/content'
+import portrait from '../../myImage-removebg-preview.png'
+import Icon from '../UI/Icon'
+import Tilt from '../UI/Tilt'
 import styles from './Hero.module.css'
 
 export default function Hero() {
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    // Single orchestrated load moment triggering entrance cascade
-    const timer = setTimeout(() => {
-      setIsLoaded(true)
-    }, 150)
-    return () => clearTimeout(timer)
-  }, [])
-
-  const letters1 = HERO_CONTENT.line1.split('')
-  const letters2 = HERO_CONTENT.line2.split('')
-
-
-  return (
-    <section className={styles.heroSection} id="hero" tabIndex={-1} aria-label="Introduction">
-      <div className={styles.heroContent}>
-        {/* Tagline pill */}
-        <div className={`${styles.taglineWrapper} ${isLoaded ? styles.visible : ''}`}>
-          <span className={styles.taglineBadge}>{HERO_CONTENT.tagline}</span>
-        </div>
-
-        {/* Huge Name Split into Per-Letter Spans Rotating up in 3D */}
-        <h1 className={styles.titleWrapper} aria-label={`${HERO_CONTENT.line1} ${HERO_CONTENT.line2}`}>
-          {/* First name */}
-          <div className={styles.lineMask} aria-hidden="true">
-            {letters1.map((char, index) => {
-              const delay = index * 0.045 + 0.1
-              return (
-                <span
-                  key={`line1-${index}`}
-                  className={`${styles.char3D} ${isLoaded ? styles.charIn : ''}`}
-                  style={{
-                    transitionDelay: `${delay}s`,
-                  }}
-                >
-                  {char}
-                </span>
-              )
-            })}
-          </div>
-
-          {/* Surname */}
-          <div className={`${styles.lineMask} ${styles.lineIndented}`} aria-hidden="true">
-            {letters2.map((char, index) => {
-              const delay = (letters1.length + index) * 0.045 + 0.1
-              return (
-                <span
-                  key={`line2-${index}`}
-                  className={`${styles.char3D} ${isLoaded ? styles.charIn : ''}`}
-                  style={{
-                    transitionDelay: `${delay}s`,
-                  }}
-                >
-                  {char}
-                </span>
-              )
-            })}
-          </div>
-        </h1>
-
-        {/* One-Line Intro */}
-        <p className={`${styles.introLead} ${isLoaded ? styles.visible : ''}`}>
-          {HERO_CONTENT.lead}
-        </p>
-
-        {/* Primary and Secondary Magnetic Buttons */}
-        <div className={`${styles.buttonGroup} ${isLoaded ? styles.visible : ''}`}>
-          <MagneticButton
-            href={HERO_CONTENT.primaryCta.href}
-            variant="primary"
-            strength={0.3}
-          >
-            {HERO_CONTENT.primaryCta.label}
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
-          </MagneticButton>
-
-          <MagneticButton
-            href={HERO_CONTENT.secondaryCta.href}
-            variant="secondary"
-            strength={0.3}
-          >
-            {HERO_CONTENT.secondaryCta.label}
-          </MagneticButton>
-        </div>
+  return <section id="hero" className={styles.hero} tabIndex={-1} aria-labelledby="hero-title">
+    <div className={styles.heroGrid}>
+      <div className={styles.copy}>
+        <p className={styles.eyebrow}><span className="status-dot" />{PERSONA.name}</p>
+        <h1 id="hero-title"><span className={styles.line}><span>CODE.</span></span><span className={styles.line}><span className={styles.outline}>CREATE.</span></span><span className={styles.line}><span className={styles.gradient}>CONNECT.</span></span></h1>
+        <p className={styles.intro}>Software developer. Curious mind.<br />Building web applications, APIs, and what comes next.</p>
+        <div className={styles.actions}><a href="#skills" className="button button-primary">Explore my world <Icon /></a><a href={PERSONA.github} target="_blank" rel="noopener noreferrer" className="button button-secondary"><Icon name="github" /> GitHub</a></div>
+        <div className={styles.meta}><span><Icon name="pin" size={14} />{PERSONA.location}</span><span>BCA STUDENT · 2023 — NOW</span></div>
       </div>
-
-      {/* Scroll Cue with Animated Line */}
-      <a
-        href="#work"
-        className={`${styles.scrollCue} ${isLoaded ? styles.visible : ''}`}
-        aria-label={HERO_CONTENT.scrollCue}
-      >
-        <span className={styles.scrollText}>{HERO_CONTENT.scrollCue}</span>
-        <div className={styles.scrollIndicator}>
-          <div className={styles.scrollDot} />
-        </div>
-      </a>
-    </section>
-  )
+      <div id="scene-anchor" className={styles.visualStage}>
+        <div className={styles.floatingTag}><span className={styles.tagDot} /><span>Ideas into<br /><strong>real experiences.</strong></span></div>
+        <span className={styles.coordinate} aria-hidden="true">LALITPUR / NEPAL<br />CREATING WHAT’S NEXT</span>
+        <div className={styles.portraitFloat}><Tilt className={styles.portraitCard}><div className={styles.portraitCrop}><img src={portrait} alt="Aaron Shasankar Bishwakarma" width="433" height="577" fetchpriority="high" decoding="async" /></div><div className={styles.photoCaption}><span>THE HUMAN BEHIND IT</span><strong>Hey, I’m Aaron <span aria-hidden="true">↗</span></strong></div></Tilt></div>
+        <a className={styles.currentWork} href={EMPLOYER.url} target="_blank" rel="noopener noreferrer"><span className="status-dot" /><span>Currently at<strong>{EMPLOYER.name} <Icon size={14} /></strong></span></a>
+      </div>
+    </div>
+    <div className={styles.heroFooter}><a href="#about"><span className={styles.scrollIcon} aria-hidden="true">↓</span>SCROLL TO DISCOVER</a><span>DEVELOPMENT · DESIGN · CURIOSITY</span><span className={styles.edition}>PORTFOLIO / {PERSONA.copyrightYear}</span></div>
+  </section>
 }

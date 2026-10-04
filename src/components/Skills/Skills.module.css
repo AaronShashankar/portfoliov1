@@ -1,10 +1,24 @@
-.skillsSection { position: relative; padding: 6rem 2rem; max-width: 1400px; margin: 0 auto; }
-.header { text-align: center; margin-bottom: 3rem; }
-.badge { display: inline-block; font-size: .85rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--violet); padding: .35rem .85rem; border-radius: 9999px; background: var(--glass-bg); border: 1px solid var(--glass-border); margin-bottom: 1rem; }
-.title { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 4rem); font-weight: 800; letter-spacing: -.04em; line-height: 1.2; color: var(--ink); margin-bottom: .75rem; overflow-wrap: anywhere; }
-.subtitle { font-size: 1.05rem; color: var(--muted); max-width: 540px; margin: 0 auto; }
-.skillGrid { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 760px; margin: 0 auto; }
-.skillCard { display: flex; align-items: center; gap: 1.25rem; padding: 1.4rem; border: 1px solid var(--glass-border); border-radius: 18px; background: var(--glass-bg); }
-.pillIndex { font-family: var(--font-display); font-size: .8rem; font-weight: 800; color: var(--cyan); }
-.pillText { font-family: var(--font-body); font-weight: 700; color: var(--ink); overflow-wrap: anywhere; }
-@media (max-width: 480px) { .skillGrid { grid-template-columns: 1fr; } .skillsSection { padding: 4rem 1.25rem; } }
+.skillsSection { position: relative; background: linear-gradient(135deg, var(--surface), transparent); border-block: 1px solid var(--line); }
+.header { display: flex; justify-content: space-between; align-items: flex-end; gap: 3rem; }
+.intro { color: var(--muted); max-width: 350px; line-height: 1.8; padding-bottom: .3rem; font-size: .94rem; }
+.filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 3rem; }
+.filters button { display: inline-flex; align-items: center; gap: .5rem; padding: .65rem 1rem; border: 1px solid var(--line); border-radius: 99px; font-size: .7rem; color: var(--muted); background: var(--surface); min-height: 44px; transition: background .3s, border-color .3s, transform .3s; }
+.filters button:hover { border-color: var(--accent); color: var(--ink); transform: translateY(-2px); }
+.filters button.selected { color: var(--on-accent); background: var(--accent); border-color: var(--accent); }
+.filters button span { font-family: var(--font-mono); font-size: .6rem; }
+.resultCount { font-size: .63rem; font-family: var(--font-mono); color: var(--muted); margin: 1.2rem 0; }
+.skillGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.skillCard { position: relative; height: 100%; overflow: hidden; min-height: 305px; padding: 2rem; background: var(--surface-strong); border: 1px solid var(--line); border-radius: 20px; min-width: 0; backdrop-filter: blur(20px); }
+.skillCard::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle 320px at var(--pointer-x, 50%) var(--pointer-y, 50%), var(--scene-glow), transparent 70%); opacity: 0; transition: opacity .4s; pointer-events: none; }
+.skillCard:hover::before { opacity: 1; }
+.skillCard > * { position: relative; }
+.cardHeading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.8rem; }
+.icon { color: var(--accent); background: var(--accent-soft); width: 46px; height: 46px; border-radius: 13px; display: grid; place-items: center; transition: transform .5s; }
+.skillCard:hover .icon { transform: rotate(-8deg) scale(1.08); }
+.count { font-family: var(--font-mono); font-size: .55rem; color: var(--muted); letter-spacing: .04em; }
+.skillCard h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 500; letter-spacing: -.03em; margin-bottom: .35rem; }
+.skillCard p { color: var(--muted); font-size: .74rem; margin-bottom: 1.5rem; }
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; }
+.tags li { padding: .35rem .65rem; font-size: .66rem; background: var(--bg2); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; overflow-wrap: anywhere; }
+@media (max-width: 1050px) { .skillGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .header { align-items: flex-start; } }
+@media (max-width: 650px) { .skillGrid { grid-template-columns: 1fr; } .header { flex-direction: column; gap: 1.4rem; } .skillCard { padding: 1.5rem; min-height: 0; } .filters { gap: .4rem; margin-top: 1.8rem; } .filters button { font-size: .65rem; padding: .55rem .7rem; } }
