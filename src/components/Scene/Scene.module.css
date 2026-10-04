@@ -1,0 +1,104 @@
+.canvasContainer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.canvasContainer:active {
+  pointer-events: none;
+}
+
+/* Graceful CSS Fallback when WebGL is unavailable */
+.fallbackContainer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at 75% 30%, rgba(123, 97, 255, 0.25) 0%, var(--bg) 70%);
+}
+
+.fallbackOrb {
+  position: absolute;
+  top: 30%;
+  right: 15%;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink) 0%, var(--cyan) 50%, var(--violet) 100%);
+  filter: blur(80px);
+  opacity: 0.55;
+  animation: orbPulse 8s ease-in-out infinite alternate;
+}
+
+.fallbackRing1 {
+  position: absolute;
+  top: 25%;
+  right: 10%;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  border: 1px solid rgba(92, 225, 230, 0.35);
+  transform: rotateX(60deg) rotateY(20deg);
+  animation: ringSpin 20s linear infinite;
+}
+
+.fallbackRing2 {
+  position: absolute;
+  top: 20%;
+  right: 8%;
+  width: 540px;
+  height: 540px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 92, 138, 0.25);
+  transform: rotateX(45deg) rotateY(-30deg);
+  animation: ringSpinReverse 25s linear infinite;
+}
+
+.fallbackGrid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to right, rgba(238, 234, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(238, 234, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+@keyframes orbPulse {
+  0% {
+    transform: scale(0.9) translate(0, 0);
+  }
+  100% {
+    transform: scale(1.15) translate(-30px, 20px);
+  }
+}
+
+@keyframes ringSpin {
+  0% {
+    transform: rotateX(60deg) rotateY(20deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(60deg) rotateY(20deg) rotateZ(360deg);
+  }
+}
+
+@keyframes ringSpinReverse {
+  0% {
+    transform: rotateX(45deg) rotateY(-30deg) rotateZ(360deg);
+  }
+  100% {
+    transform: rotateX(45deg) rotateY(-30deg) rotateZ(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fallbackOrb,
+  .fallbackRing1,
+  .fallbackRing2 {
+    animation: none;
+  }
+}

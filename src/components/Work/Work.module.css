@@ -1,0 +1,541 @@
+.pinContainer {
+  position: relative;
+  width: 100%;
+}
+
+.stickyViewport {
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(4.5rem + env(safe-area-inset-top, 0px)) 0 calc(2rem + env(safe-area-inset-bottom, 0px)) 0;
+}
+
+/* Track Progress Indicator */
+.trackProgressWrapper {
+  position: absolute;
+  top: calc(5.5rem + env(safe-area-inset-top, 0px));
+  left: 3rem;
+  right: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 20;
+}
+
+.trackProgressLabel {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.trackProgressBar {
+  flex: 1;
+  height: 2px;
+  background: rgba(168, 164, 212, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.trackProgressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan) 0%, var(--pink) 100%);
+  transition: width 0.1s linear;
+}
+
+.trackProgressCounter {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cyan);
+  min-width: 38px;
+}
+
+/* Horizontal Track */
+.horizontalTrack {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 0 4rem;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Intro Panel */
+.introPanel {
+  width: clamp(300px, 32vw, 440px);
+  flex-shrink: 0;
+  padding-right: 1.5rem;
+}
+
+.introBadge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1rem;
+}
+
+.introTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.introDescription {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.scrollGuide {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Glass Card */
+.cardContainer {
+  position: relative;
+  width: clamp(320px, 36vw, 480px);
+  height: 560px;
+  flex-shrink: 0;
+  background: rgba(28, 24, 80, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  padding: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(8, 6, 26, 0.5);
+  cursor: default;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+@media (prefers-color-scheme: light) {
+  .cardContainer {
+    background: rgba(217, 210, 255, 0.65);
+    border: 1px solid rgba(23, 19, 63, 0.12);
+    box-shadow: 0 20px 40px rgba(95, 89, 143, 0.15);
+  }
+}
+
+.cardContainer:hover {
+  border-color: rgba(92, 225, 230, 0.5);
+  box-shadow: 0 24px 60px rgba(92, 225, 230, 0.15);
+}
+
+.glareOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 28px;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 10;
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.cardIndex {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--cyan);
+}
+
+.cardYear {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.cardBadge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(238, 234, 255, 0.08);
+  border: 1px solid rgba(238, 234, 255, 0.12);
+  color: var(--muted);
+}
+
+/* Artwork Stage */
+.artworkStage {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+  border-radius: 18px;
+  background: rgba(16, 14, 46, 0.4);
+  border: 1px solid rgba(238, 234, 255, 0.06);
+  overflow: hidden;
+}
+
+/* 1. ARTWORK: Tidepool Concentric Rings */
+.artworkRings {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.concentricRing {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid var(--cyan);
+  animation: rippleScale 3.5s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+.ring1 { width: 40px; height: 40px; animation-delay: 0s; }
+.ring2 { width: 80px; height: 80px; animation-delay: 0.8s; }
+.ring3 { width: 120px; height: 120px; animation-delay: 1.6s; }
+.ring4 { width: 155px; height: 155px; animation-delay: 2.4s; }
+
+.ringCenterDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+  z-index: 2;
+}
+
+@keyframes rippleScale {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* 2. ARTWORK: Halcyon Equalizer */
+.artworkEqualizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 100px;
+  padding: 0 10px;
+}
+
+.eqBar {
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--pink) 0%, var(--violet) 100%);
+  border-radius: 3px;
+  animation: eqDance 1.2s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+@keyframes eqDance {
+  0% {
+    transform: scaleY(0.15);
+  }
+  50% {
+    transform: scaleY(0.9);
+  }
+  100% {
+    transform: scaleY(0.35);
+  }
+}
+
+/* 3. ARTWORK: Orbit Atlas 3D Rings */
+.artworkOrbit {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  perspective: 600px;
+}
+
+.orbitRingA {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(123, 97, 255, 0.6);
+  transform: rotateX(65deg) rotateY(20deg);
+  animation: orbitSpinA 6s linear infinite;
+}
+
+.satelliteA {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 0 0 10px var(--yellow);
+}
+
+.orbitRingB {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(92, 225, 230, 0.45);
+  transform: rotateX(50deg) rotateY(-40deg);
+  animation: orbitSpinB 9s linear infinite reverse;
+}
+
+.satelliteB {
+  position: absolute;
+  top: -4px;
+  left: 30%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+.orbitRingC {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 92, 138, 0.4);
+  transform: rotateX(80deg);
+}
+
+.orbitCore {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFF 0%, var(--violet) 70%);
+  box-shadow: 0 0 20px var(--violet);
+  z-index: 2;
+}
+
+@keyframes orbitSpinA {
+  0% { transform: rotateX(65deg) rotateY(20deg) rotateZ(0deg); }
+  100% { transform: rotateX(65deg) rotateY(20deg) rotateZ(360deg); }
+}
+
+@keyframes orbitSpinB {
+  0% { transform: rotateX(50deg) rotateY(-40deg) rotateZ(0deg); }
+  100% { transform: rotateX(50deg) rotateY(-40deg) rotateZ(360deg); }
+}
+
+/* 4. ARTWORK: Fieldnotes Floating Stacked Sheets */
+.artworkSheets {
+  position: relative;
+  width: 180px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 700px;
+}
+
+.sheetLayer {
+  position: absolute;
+  width: 110px;
+  height: 80px;
+  border-radius: 10px;
+  background: rgba(28, 24, 80, 0.85);
+  border: 1px solid rgba(255, 200, 87, 0.35);
+  padding: 10px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s ease;
+}
+
+.sheetLayer1 {
+  transform: rotate(-10deg) translate(-14px, 10px);
+  opacity: 0.5;
+  background: rgba(28, 24, 80, 0.5);
+}
+
+.sheetLayer2 {
+  transform: rotate(5deg) translate(8px, -5px);
+  opacity: 0.75;
+  background: rgba(28, 24, 80, 0.7);
+  animation: floatSheet 4s ease-in-out infinite alternate;
+}
+
+.sheetLayer3 {
+  transform: rotate(-2deg) translate(0, 0);
+  background: rgba(35, 30, 95, 0.95);
+  border-color: var(--yellow);
+  box-shadow: 0 12px 30px rgba(255, 200, 87, 0.15);
+  animation: floatSheet 4.5s ease-in-out infinite alternate-reverse;
+}
+
+.sheetHeader {
+  width: 40%;
+  height: 6px;
+  background: var(--yellow);
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+
+.sheetLine {
+  width: 85%;
+  height: 4px;
+  background: rgba(238, 234, 255, 0.3);
+  border-radius: 2px;
+  margin-bottom: 6px;
+}
+
+.sheetLineHalf {
+  width: 50%;
+  height: 4px;
+  background: rgba(238, 234, 255, 0.2);
+  border-radius: 2px;
+}
+
+@keyframes floatSheet {
+  0% { transform: rotate(5deg) translate(8px, -5px); }
+  100% { transform: rotate(7deg) translate(8px, -12px); }
+}
+
+/* Card Content */
+.cardContent {
+  position: relative;
+  z-index: 10;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+
+.cardSubtitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cyan);
+  margin-bottom: 0.8rem;
+}
+
+.cardDescription {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--muted);
+  margin-bottom: 1.4rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  background: rgba(238, 234, 255, 0.06);
+  border: 1px solid rgba(238, 234, 255, 0.1);
+  color: var(--ink);
+}
+
+@media (max-width: 768px) {
+  .horizontalTrack {
+    padding: 0 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .cardContainer {
+    width: 82vw;
+    height: 520px;
+    padding: 1.5rem;
+  }
+
+  .introPanel {
+    width: 82vw;
+  }
+
+  .trackProgressWrapper {
+    left: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .concentricRing,
+  .eqBar,
+  .orbitRingA,
+  .orbitRingB,
+  .sheetLayer2,
+  .sheetLayer3 {
+    animation: none !important;
+  }
+  .cardContainer {
+    transform: none !important;
+  }
+}
+
+/* A normal-flow grid keeps every project reachable at any viewport or zoom. */
+.pinContainer { max-width: 1400px; margin: 0 auto; padding: 6rem 2rem; }
+.introPanel { width: auto; max-width: 680px; margin-bottom: 2.5rem; padding: 0; }
+.projectGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+.cardContainer { width: 100%; height: auto; min-width: 0; padding: 2rem; border-top: 3px solid var(--project-accent, var(--cyan)); }
+.cardHeader { flex-wrap: wrap; gap: .75rem; }
+.cardBadge { max-width: 100%; overflow-wrap: anywhere; }
+.cardTitle { overflow-wrap: anywhere; }
+.cardDescription { display: block; overflow: visible; }
+.artworkStage { flex-shrink: 0; }
+.projectLink { display: inline-block; color: var(--cyan); text-decoration: underline; text-underline-offset: .25em; margin-bottom: 1rem; padding: .5rem 0; }
+.projectStatus { color: var(--muted); font-size: .85rem; margin-bottom: 1rem; }
+@media (max-width: 768px) { .pinContainer { padding: 4rem 1.25rem; } .projectGrid { grid-template-columns: 1fr; } .cardContainer { width: 100%; height: auto; padding: 1.5rem; } .introPanel { width: auto; } }
